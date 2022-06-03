@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import EpisodeDetails from '../episode-details/episode-details';
 import EpisodesList from '../episodes-list/episodes-list';
 
@@ -14,7 +14,7 @@ const App: FC = () => {
   return (
     <div className={`${styles.wrapper}`}>
       <header>
-        E-comete Test Task
+        <Link to="/">E-comete Test Task</Link>
       </header>
       <div className={`${styles.contentWrapper}`}>
         <Routes>
