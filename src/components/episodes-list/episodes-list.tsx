@@ -1,6 +1,7 @@
 import { useStore } from 'effector-react';
 import React, { FC } from 'react';
 import { Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { $episodes } from '../../features/episodes';
 
 // Styles
@@ -13,7 +14,7 @@ const EpisodesList: FC = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <td>
+            <td className={`${styles.idCell}`}>
               Id
             </td>
             <td>
@@ -30,13 +31,12 @@ const EpisodesList: FC = () => {
             </td>
           </tr>
         </thead>
-        {/* {episodes.list.length && ( */}
         <tbody>
           {episodes.list.map((ep) => {
             return (
               <tr key={ep.id}>
-                <td>
-                  {ep.id}
+                <td className={`${styles.idCell}`}>
+                  <Link to={`${ep.id}`}>{ep.id}</Link>
                 </td>
                 <td>
                   {ep.name}
@@ -54,8 +54,6 @@ const EpisodesList: FC = () => {
             );
           })}
         </tbody>
-        {/* )} */}
-        {/* !episodes.list.length && (<tbody><tr><td>list is empty</td></tr></tbody>) */}
       </Table>
     </div>
   );

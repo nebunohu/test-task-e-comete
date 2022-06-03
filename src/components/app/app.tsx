@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { API_BASE_URL } from '../../consts';
 import getEpisodesFx from '../../features/episodes/effects/get-episodes';
+import EpisodeDetails from '../episode-details/episode-details';
 import EpisodesList from '../episodes-list/episodes-list';
 
 // Styles
@@ -14,9 +15,15 @@ const App: FC = () => {
 
   return (
     <div className={`${styles.wrapper}`}>
-      <Routes>
-        <Route path="/" element={<EpisodesList />} />
-      </Routes>
+      <header>
+        E-comete Test Task
+      </header>
+      <div className={`${styles.contentWrapper}`}>
+        <Routes>
+          <Route path="/" element={<EpisodesList />} />
+          <Route path="/:episode" element={<EpisodeDetails />} />
+        </Routes>
+      </div>
     </div>
   );
 };
