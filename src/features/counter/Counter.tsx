@@ -1,29 +1,29 @@
-import React from "react";
-import { useStore } from "effector-react";
-import { $counter, increment, decrement } from "./model";
-import "./Counter.css";
+import React from 'react';
+import { useStore } from 'effector-react';
+import { $counter } from './model';
+import './Counter.css';
 
-export const Counter: React.FC<{className: string}> = ({className}) => {
+export const Counter: React.FC<{ className: string }> = ({ className }) => {
   const counter = useStore($counter);
-  const counterClasses = className ? `counter ${className}` : `counter`;
+  const counterClasses = className ? `counter ${className}` : 'counter';
 
   return (
     <div className={counterClasses}>
-      <button
+      {/* <button
         className="counter__button"
         aria-label="Increment value"
         onClick={increment}
       >
         +
-      </button>
+      </button> */}
       <span className="counter__label">{counter}</span>
-      <button
+      {/* <button
         className="counter__button"
         aria-label="Decrement value"
         onClick={decrement}
       >
         -
-      </button>
+      </button> */}
     </div>
   );
 };

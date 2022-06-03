@@ -4,7 +4,7 @@ import App from './components/app/app';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
-const renderTarget = document.getElementById("root");
+const renderTarget = document.getElementById('root');
 render(<App />, renderTarget);
 
 // If you want to start measuring performance in your app, pass a function
