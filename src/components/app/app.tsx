@@ -1,7 +1,5 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { API_BASE_URL } from '../../consts';
-import getEpisodesFx from '../../features/episodes/effects/get-episodes';
 import EpisodeDetails from '../episode-details/episode-details';
 import EpisodesList from '../episodes-list/episodes-list';
 
@@ -9,9 +7,9 @@ import EpisodesList from '../episodes-list/episodes-list';
 import styles from './app.module.scss';
 
 const App: FC = () => {
-  useEffect(() => {
-    getEpisodesFx(`${API_BASE_URL}/episode`);
-  }, []);
+  // useEffect(() => {
+  //   getEpisodesFx(`${API_BASE_URL}/episode?page=1`);
+  // }, []);
 
   return (
     <div className={`${styles.wrapper}`}>
