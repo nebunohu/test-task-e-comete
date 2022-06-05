@@ -1,5 +1,8 @@
 import React, { FC } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
+import CharacterPage from '../../pages/character-page/character-page';
+import LocationPage from '../../pages/location-page/location-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import EpisodeDetails from '../episode-details/episode-details';
 import EpisodesList from '../episodes-list/episodes-list';
 import ErrorBoundary from '../error-boundary/error-boundary';
@@ -21,7 +24,10 @@ const App: FC = () => {
         <div className={`${styles.contentWrapper}`}>
           <Routes>
             <Route path="/" element={<EpisodesList />} />
-            <Route path="/:episode" element={<EpisodeDetails />} />
+            <Route path="/episode/:episode" element={<EpisodeDetails />} />
+            <Route path="/character/:characterId" element={<CharacterPage />} />
+            <Route path="/location/:location" element={<LocationPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </div>

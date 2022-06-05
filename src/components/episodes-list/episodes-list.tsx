@@ -1,16 +1,12 @@
 import { useStore } from 'effector-react';
 import React, {
   FC,
-  // useCallback,
   useEffect,
-  // useRef,
-  // useState,
 } from 'react';
 import { API_BASE_URL } from '../../consts';
 import { $episodes } from '../../features/episodes';
 import addSeason from '../../features/episodes/effects/add-season';
 import getEpisodesFx from '../../features/episodes/effects/get-episodes';
-// import getEpisodesNextPageFx from '../../features/episodes/effects/get-episodes-next-page';
 import SeasonTable from '../season-table/season-table';
 
 // Styles
@@ -30,7 +26,7 @@ const EpisodesList: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (list.length) {
+    if (!seasons.length) {
       let foundSeason = true;
       let seasonNumber = 1;
       while (foundSeason) {

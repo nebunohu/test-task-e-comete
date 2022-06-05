@@ -41,7 +41,7 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
             return (
               <tr key={ep.id}>
                 <td className={`${styles.idCell}`}>
-                  <Link to={`${ep.id}`}>{ep.id}</Link>
+                  <Link to={`/episode/${ep.id}`}>{ep.id}</Link>
                 </td>
                 <td>
                   {ep.name}

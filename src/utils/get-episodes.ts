@@ -1,9 +1,13 @@
 const getEpisodes = async (url: string, list: any) => {
-  const res = await fetch(url);
-  const data = await res.json();
-  list = [...list, ...data.results]
-  if(data.info.next) list = await getEpisodes(data.info.next, list);
-  return list;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    let newList: any = [...list, ...data.results];
+    if (data.info.next) newList = await getEpisodes(data.info.next, newList);
+    return newList;
+  } catch (error) {
+    return error;
+  }
 };
 
 export default getEpisodes;

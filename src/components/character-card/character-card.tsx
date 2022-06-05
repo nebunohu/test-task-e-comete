@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import StatusMarker from '../status-marker/status-marker';
 // import StatusMarker from '../status-marker/status-marker';
 import styles from './character-card.module.scss';
@@ -8,14 +9,34 @@ type TCharacterCardProps = {
 }
 
 const CharacterCard: FC<TCharacterCardProps> = ({ character }) => {
+  const splittedCharacterUrl = character.url.split('/');
+  const characterId = splittedCharacterUrl[splittedCharacterUrl.length - 1];
+  const splittedLocationUrl = character.location.url.split('/');
+  const locationId = splittedLocationUrl[splittedLocationUrl.length - 1];
   return (
     <article className={`${styles.cardWrapper}`}>
       <img className={`${styles.cardImage}`} src={character.image} alt='' />
       <div className={`${styles.infoWrapper}`}>
         <ul>
-          <li className={`${styles.characterName}`}>{character.name}</li>
+          <li className={`${styles.characterName}`}>
+            <Link 
+              to={`/character/${characterId}`}
+              state={{
+                character
+              }}
+            >
+              {character.name}
+            </Link>
+          </li>
           <li className={`${styles.characterStatus}`}><StatusMarker status={character.status} /> {character.status} - {character.species}</li>
-          <li>Last known location: {character.location.name}</li>
+          <li>
+            Last known location:
+            <Link 
+              to={`/location/${locationId}`}
+            >
+              {character.location.name}
+            </Link>
+          </li>
         </ul>
       </div>
     </article>
