@@ -35,3 +35,11 @@ export type TCharacter = {
   "url": string;
   "created": string;  
 };
+
+export type TLocation = {
+  "id": number;
+  "name": string;
+  "type": string;
+  "dimension": string;
+  "residents": Array<string>;
+};

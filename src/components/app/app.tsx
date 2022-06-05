@@ -26,7 +26,7 @@ const App: FC = () => {
             <Route path="/" element={<EpisodesList />} />
             <Route path="/episode/:episode" element={<EpisodeDetails />} />
             <Route path="/character/:characterId" element={<CharacterPage />} />
-            <Route path="/location/:location" element={<LocationPage />} />
+            <Route path="/location/:locationId" element={<LocationPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
