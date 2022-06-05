@@ -1,7 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-
-// Styles
-import styles from './character.module.scss';
+import CharacterCard from '../character-card/character-card';
 
 type TCharacterProps = {
   url: string;
@@ -24,10 +22,11 @@ const Character: FC<TCharacterProps> = ({ url }) => {
       console.log(e);
     }
   }, [person]);
+
+  if (!person) return null;
+
   return (
-    <div className={`${styles.wrapper}`}>
-      {person?.name}
-    </div>
+    <CharacterCard character={person} />
   );
 };
 

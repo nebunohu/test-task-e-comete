@@ -1,8 +1,12 @@
 import { createEffect } from 'effector';
+import getEpisodes from '../../../utils/get-episodes';
+import setEpisodesRequest from './set-episodes-request';
 
 const getEpisodesFx = createEffect<any>(async (url: string) => {
-  const res = await fetch(url);
-  const data = await res.json();
+
+  setEpisodesRequest(true);
+  const data = await getEpisodes(url, []);
+  setEpisodesRequest(false);
   return data;
 });
 

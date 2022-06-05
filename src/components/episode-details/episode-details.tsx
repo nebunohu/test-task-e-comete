@@ -1,23 +1,28 @@
 import { useStore } from 'effector-react';
 import React, { FC } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { $episodes } from '../../features/episodes';
 import Character from '../character/character';
+
+// Styles
+import styles from './episode-details.module.scss';
 
 // type TEpisodeDetailsProps = {
 //   characters: Array<string>;
 // };
 
 const EpisodeDetails: FC = () => {
-  const location = useLocation();
   const { episode } = useParams();
   const { list } = useStore($episodes);
-  const characters = list.find((el) => el.id.toString() === episode)?.characters;
+  const currentEpisode = list.find((el) => el.id.toString() === episode);
   return (
-    <div>
-      {location.pathname}
-      <div>
-        {characters && characters.map((el, index) => <Character key={`index_${index + 1}`} url={el} />)}
+    <div className={`${styles.wrapper}`}>
+      <h1>{currentEpisode?.name}</h1>
+      <span>{currentEpisode?.episode}</span>
+      <span>{currentEpisode?.air_date}</span>
+      <h2>Characters</h2>
+      <div className={`${styles.charactersWrapper}`}>
+        {currentEpisode && currentEpisode.characters.map((el, index) => <Character key={`index_${index + 1}`} url={el} />)}
       </div>
     </div>
   );

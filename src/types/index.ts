@@ -11,6 +11,6 @@ export type TEpisode = {
 export type TInfo = {
   count: number;
   next: string | null;
-  pagaes: number;
+  pages: number;
   prev: string | null;
 };
