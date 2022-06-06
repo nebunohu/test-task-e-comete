@@ -12,6 +12,7 @@ import getCharacterFx from '../../features/character/effects/get-character-fx';
 import StatusMarker from '../../components/status-marker/status-marker';
 import clearCharacterFx from '../../features/character/effects/clear-character';
 import BackButton from '../../components/back-button/back-button';
+import styles from './character-page.module.scss';
 
 const CharacterPage: FC = () => {
   const { character } = useStore($characterState);
@@ -64,9 +65,17 @@ const CharacterPage: FC = () => {
             {character.origin.name}
           </Row>
           <Row>
-            <Stack className="p-0" direction="horizontal">
+            <Stack
+              className="p-0"
+              direction="horizontal"
+            >
               Location:&nbsp;
-              <Link to={`/location/${characterLocationId ? characterLocationId[0] : null}`}>{character.location.name}</Link>
+              <Link
+                className={`${styles.link}`}
+                to={`/location/${characterLocationId ? characterLocationId[0] : null}`}
+              >
+                {character.location.name}
+              </Link>
             </Stack>
           </Row>
         </Col>
