@@ -10,12 +10,16 @@ import {
 import { $characterState } from '../../features/character';
 import getCharacterFx from '../../features/character/effects/get-character-fx';
 import StatusMarker from '../../components/status-marker/status-marker';
+import clearCharacterFx from '../../features/character/effects/clear-character';
 
 const CharacterPage: FC = () => {
   const { character } = useStore($characterState);
   const { characterId } = useParams();
   useEffect(() => {
     if (characterId) getCharacterFx(characterId);
+    return () => {
+      clearCharacterFx();
+    };
   }, []);
 
   if (!character) return null;

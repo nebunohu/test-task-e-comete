@@ -1,5 +1,6 @@
 import { createStore } from 'effector';
 import { TCharacter } from '../../types';
+import clearCharacterFx from './effects/clear-character';
 import getCharacterFx from './effects/get-character-fx';
 
 type TEpisodesState = {
@@ -19,4 +20,7 @@ export const initialState: TEpisodesState = {
 export const $characterState = createStore(initialState)
   .on(getCharacterFx.doneData, (characterState, newData: any) => {
     return { ...characterState, character: newData };
+  })
+  .on(clearCharacterFx, (characterState) => {
+    return { ...characterState, character: null };
   });
