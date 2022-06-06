@@ -10,4 +10,4 @@ const getCharacter = async (id: string) => {
   }
 };
 
-export default getCharacter
+export default getCharacter;

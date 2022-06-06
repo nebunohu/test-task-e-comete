@@ -2,7 +2,6 @@ import { createStore } from 'effector';
 import { TCharacter } from '../../types';
 import getCharacterFx from './effects/get-character-fx';
 
-
 type TEpisodesState = {
   character: TCharacter | null;
 

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useStore } from 'effector-react';
 import { useParams } from 'react-router-dom';
 import { $characterState } from '../../features/character';

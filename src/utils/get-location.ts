@@ -10,4 +10,4 @@ const getLocation = async (id: string) => {
   }
 };
 
-export default getLocation
+export default getLocation;

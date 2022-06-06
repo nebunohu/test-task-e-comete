@@ -2,7 +2,6 @@ import { createStore } from 'effector';
 import { TLocation } from '../../types';
 import getLocationFx from './effects/get-location-fx';
 
-
 type TLocationState = {
   location: TLocation | null;
 

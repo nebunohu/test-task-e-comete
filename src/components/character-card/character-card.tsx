@@ -6,7 +6,7 @@ import styles from './character-card.module.scss';
 
 type TCharacterCardProps = {
   character: any;
-}
+};
 
 const CharacterCard: FC<TCharacterCardProps> = ({ character }) => {
   const splittedCharacterUrl = character.url.split('/');
@@ -15,23 +15,28 @@ const CharacterCard: FC<TCharacterCardProps> = ({ character }) => {
   const locationId = splittedLocationUrl[splittedLocationUrl.length - 1];
   return (
     <article className={`${styles.cardWrapper}`}>
-      <img className={`${styles.cardImage}`} src={character.image} alt='' />
+      <img className={`${styles.cardImage}`} src={character.image} alt="" />
       <div className={`${styles.infoWrapper}`}>
         <ul>
           <li className={`${styles.characterName}`}>
-            <Link 
+            <Link
               to={`/character/${characterId}`}
               state={{
-                character
+                character,
               }}
             >
               {character.name}
             </Link>
           </li>
-          <li className={`${styles.characterStatus}`}><StatusMarker status={character.status} /> {character.status} - {character.species}</li>
+          <li className={`${styles.characterStatus}`}>
+            <StatusMarker status={character.status} />
+            {character.status}
+            -
+            {character.species}
+          </li>
           <li>
             Last known location:
-            <Link 
+            <Link
               to={`/location/${locationId}`}
             >
               {character.location.name}

@@ -35,7 +35,6 @@ const EpisodesList: FC = () => {
         foundSeason = parseSeasons(regExp);
         seasonNumber += 1;
       }
-      console.log('test');
     }
   }, [list]);
 
