@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import getCharacterFx from '../../features/character/effects/get-character-fx';
 import { TCharacter } from '../../types';
 import getCharacter from '../../utils/get-character';
+import styles from './resident.module.scss';
 
 type TResidentProps = {
   residentUrl: string;
@@ -30,7 +31,7 @@ const Resident: FC<TResidentProps> = ({ residentUrl }) => {
 
   return (
     <Link
-      className="p-0"
+      className={`${styles.link} p-0`}
       to={`/character/${resident.id}`}
       state={{
         from: location.pathname,
