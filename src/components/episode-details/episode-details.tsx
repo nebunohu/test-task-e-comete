@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { API_BASE_URL } from '../../consts';
 import { $episodes } from '../../features/episodes';
 import getEpisodesFx from '../../features/episodes/effects/get-episodes';
+import BackButton from '../back-button/back-button';
 import Character from '../character/character';
 
 // Styles
@@ -25,6 +26,7 @@ const EpisodeDetails: FC = () => {
 
   return (
     <Container>
+      <BackButton />
       <div className={`${styles.wrapper}`}>
         <h1>{currentEpisode?.name}</h1>
         <span>{currentEpisode?.episode}</span>

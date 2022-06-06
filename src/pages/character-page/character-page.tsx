@@ -11,6 +11,7 @@ import { $characterState } from '../../features/character';
 import getCharacterFx from '../../features/character/effects/get-character-fx';
 import StatusMarker from '../../components/status-marker/status-marker';
 import clearCharacterFx from '../../features/character/effects/clear-character';
+import BackButton from '../../components/back-button/back-button';
 
 const CharacterPage: FC = () => {
   const { character } = useStore($characterState);
@@ -28,6 +29,7 @@ const CharacterPage: FC = () => {
 
   return (
     <Container>
+      <BackButton />
       <Row>
         <h1>
           {character.name}
@@ -35,7 +37,11 @@ const CharacterPage: FC = () => {
       </Row>
       <Row sm="12">
         <Col sm="3">
-          <img style={{ width: '100%', border: '2px solid black' }} src={character.image} alt={character.name} />
+          <img
+            style={{ width: '100%', border: '2px solid black' }}
+            src={character.image}
+            alt={character.name}
+          />
         </Col>
         <Col>
           <Row>

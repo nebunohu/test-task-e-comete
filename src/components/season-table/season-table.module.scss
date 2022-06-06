@@ -5,3 +5,13 @@
 .headerCell {
   cursor: pointer;
 }
+
+.formWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.searchWrapper {
+  display: flex;
+  justify-content: flex-end;
+}

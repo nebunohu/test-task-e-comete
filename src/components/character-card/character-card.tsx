@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import StatusMarker from '../status-marker/status-marker';
 // import StatusMarker from '../status-marker/status-marker';
 import styles from './character-card.module.scss';
@@ -13,6 +13,7 @@ const CharacterCard: FC<TCharacterCardProps> = ({ character }) => {
   const characterId = splittedCharacterUrl[splittedCharacterUrl.length - 1];
   const splittedLocationUrl = character.location.url.split('/');
   const locationId = splittedLocationUrl[splittedLocationUrl.length - 1];
+  const location = useLocation();
   return (
     <article className={`${styles.cardWrapper}`}>
       <img className={`${styles.cardImage}`} src={character.image} alt="" />
@@ -23,7 +24,7 @@ const CharacterCard: FC<TCharacterCardProps> = ({ character }) => {
               className={`${styles.link}`}
               to={`/character/${characterId}`}
               state={{
-                character,
+                from: location.pathname,
               }}
             >
               {character.name}
@@ -42,6 +43,9 @@ const CharacterCard: FC<TCharacterCardProps> = ({ character }) => {
             <Link
               className={`${styles.link}`}
               to={`/location/${locationId}`}
+              state={{
+                from: location.pathname,
+              }}
             >
               {character.location.name}
             </Link>

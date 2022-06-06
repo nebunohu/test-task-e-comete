@@ -9,6 +9,7 @@ import {
 import { $locationState } from '../../features/location';
 import getLocationFx from '../../features/location/effects/get-location-fx';
 import Resident from '../../components/resident/resident';
+import BackButton from '../../components/back-button/back-button';
 
 const LocationPage: FC = () => {
   const { location } = useStore($locationState);
@@ -21,6 +22,7 @@ const LocationPage: FC = () => {
 
   return (
     <Container>
+      <BackButton />
       <Row>
         <h1>
           {location.name}

@@ -139,8 +139,13 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
           className="mt-1"
           onSubmit={onFormSubmit}
         >
-          <Row>
-            <Col>
+          <Row
+            className="align-items-center"
+            lg={12}
+          >
+            <Col
+              lg={8}
+            >
               <Stack
                 direction="horizontal"
                 gap={5}
@@ -192,7 +197,9 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
                 </Form.Group>
               </Stack>
             </Col>
-            <Col>
+            <Col
+              className={`${styles.searchWrapper}`}
+            >
               <Stack
                 className="my-2"
                 direction="horizontal"
@@ -219,6 +226,7 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
           <tr>
             {formState.id && (
               <td
+                width="10%"
                 className={`${styles.idCell} ${styles.headerCell}`}
                 onClick={sortById}
               >
@@ -252,6 +260,7 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
             )}
             {formState.episode && (
               <td
+                width="15%"
                 className={`${styles.headerCell}`}
                 onClick={sortByEpisode}
               >
@@ -263,6 +272,7 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
             )}
             {formState.count && (
               <td
+                width="20%"
                 className={`${styles.headerCell}`}
                 onClick={sortByCharactersCount}
               >

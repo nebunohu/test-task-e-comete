@@ -1,3 +1,5 @@
+import { Location } from 'history';
+
 export type TEpisode = {
   air_date: string;
   characters: Array<string>;
@@ -42,4 +44,13 @@ export type TLocation = {
   "type": string;
   "dimension": string;
   "residents": Array<string>;
+};
+
+export type TLocationWithState = Location & {
+  state: {
+    from: string;
+    background?: string;
+    backgroundProtected?: string
+  };
+  pathname: string;
 };
