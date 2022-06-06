@@ -5,10 +5,18 @@
   height: 220px;
   box-sizing: border-box;
   border-radius: 15px;
-  background-color: rgb(60, 62, 68);
-  color: white;
+  border: 1px solid black;
   overflow: hidden;
   cursor: pointer;
+}
+
+.cardImage {
+  outline: 1px solid black;
+}
+
+.link,
+.link:hover {
+  color: black;
 }
 
 .cardWrapper li {
@@ -18,6 +26,7 @@
 .characterName {
   font-size: 2em;
   font-weight: bold;
+  margin-top: 15px;
 }
 
 .characterStatus {

@@ -20,6 +20,7 @@ const CharacterCard: FC<TCharacterCardProps> = ({ character }) => {
         <ul>
           <li className={`${styles.characterName}`}>
             <Link
+              className={`${styles.link}`}
               to={`/character/${characterId}`}
               state={{
                 character,
@@ -31,12 +32,15 @@ const CharacterCard: FC<TCharacterCardProps> = ({ character }) => {
           <li className={`${styles.characterStatus}`}>
             <StatusMarker status={character.status} />
             {character.status}
+            &nbsp;
             -
+            &nbsp;
             {character.species}
           </li>
           <li>
-            Last known location:
+            Last known location:&nbsp;
             <Link
+              className={`${styles.link}`}
               to={`/location/${locationId}`}
             >
               {character.location.name}
