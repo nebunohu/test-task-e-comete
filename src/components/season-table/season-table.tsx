@@ -1,15 +1,25 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  FormEvent,
+  useRef,
+  useState,
+} from 'react';
 import { Link } from 'react-router-dom';
 import {
   Form,
   Stack,
   Table,
   Container,
+  Button,
+  Col,
+  Row,
 } from 'react-bootstrap';
+import { TEpisode } from '../../types';
+import sortByKey from '../../utils/sort-by-key';
 
 // Styles
 import styles from './season-table.module.scss';
-import { TEpisode } from '../../types';
 
 type TSeasonTableProps = {
   list: Array<TEpisode>;
@@ -32,53 +42,7 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
     episode: true,
     count: true,
   });
-
-  const sortByKey = (sortingList: Array<TEpisode>, key: string) => {
-    let localSortedList = [...sortingList];
-    function compareItems(item1: any, item2: any) {
-      if (item1[key] > item2[key]) {
-        return 1;
-      }
-      if (item1[key] < item2[key]) {
-        return -1;
-      }
-      return 0;
-    }
-
-    function compareItemsByDate(item1: any, item2: any) {
-      const date1 = new Date(item1);
-      const date2 = new Date(item2);
-      if (date1 > date2) {
-        return 1;
-      }
-      if (date1 < date2) {
-        return -1;
-      }
-      return 0;
-    }
-
-    function compareItemsByCharactersCount(item1: any, item2: any) {
-      const count1 = item1.characters.length;
-      const count2 = item2.characters.length;
-      if (count1 > count2) {
-        return 1;
-      }
-      if (count1 < count2) {
-        return -1;
-      }
-      return 0;
-    }
-
-    if (key === 'air_date') {
-      localSortedList = localSortedList.sort(compareItemsByDate);
-    } else if (key === 'count') {
-      localSortedList = localSortedList.sort(compareItemsByCharactersCount);
-    } else {
-      localSortedList = localSortedList.sort(compareItems);
-    }
-
-    return localSortedList;
-  };
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const sortById = () => {
     setSortedList(() => sortByKey(list, 'id'));
@@ -140,6 +104,26 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
     setFormState({ ...formState, [name]: checked });
   };
 
+  const onFormSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    // if (searchInputRef.current) {
+    let filteredList = list.filter((episode) => {
+      const value = searchInputRef.current?.value as string;
+      return episode.name.toLowerCase().includes(value.toLowerCase());
+    });
+    // console.log(filteredList);
+    type keys = keyof typeof sortedByFlag;
+    for () {
+      if (sortedByFlag[key]) {
+        filteredList = sortByKey(filteredList, key);
+        break;
+      }
+    }
+
+    setSortedList(filteredList);
+    // }
+  };
+
   return (
     <Container>
       <h1>
@@ -147,57 +131,78 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
       </h1>
       <div className="mb-3">
         Show columns:
-        <Form className="mt-1">
-          <Stack
-            direction="horizontal"
-            gap={5}
-          >
-            <Form.Group>
-              <Form.Check
-                type="checkbox"
-                label="Id"
-                name="id"
-                defaultChecked={formState.id}
-                onChange={onFormChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Check
-                type="checkbox"
-                label="Name"
-                name="name"
-                defaultChecked={formState.name}
-                onChange={onFormChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Check
-                type="checkbox"
-                label="Air date"
-                name="air_date"
-                defaultChecked={formState.air_date}
-                onChange={onFormChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Check
-                type="checkbox"
-                label="Episode"
-                name="episode"
-                defaultChecked={formState.episode}
-                onChange={onFormChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Check
-                type="checkbox"
-                label="Characters count"
-                name="count"
-                defaultChecked={formState.count}
-                onChange={onFormChange}
-              />
-            </Form.Group>
-          </Stack>
+        <Form
+          className="mt-1"
+          onSubmit={onFormSubmit}
+        >
+          <Row>
+            <Col>
+              <Stack
+                direction="horizontal"
+                gap={5}
+              >
+                <Form.Group>
+                  <Form.Check
+                    type="checkbox"
+                    label="Id"
+                    name="id"
+                    defaultChecked={formState.id}
+                    onChange={onFormChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Check
+                    type="checkbox"
+                    label="Name"
+                    name="name"
+                    defaultChecked={formState.name}
+                    onChange={onFormChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Check
+                    type="checkbox"
+                    label="Air date"
+                    name="air_date"
+                    defaultChecked={formState.air_date}
+                    onChange={onFormChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Check
+                    type="checkbox"
+                    label="Episode"
+                    name="episode"
+                    defaultChecked={formState.episode}
+                    onChange={onFormChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Check
+                    type="checkbox"
+                    label="Characters count"
+                    name="count"
+                    defaultChecked={formState.count}
+                    onChange={onFormChange}
+                  />
+                </Form.Group>
+              </Stack>
+            </Col>
+            <Col>
+              <Stack
+                className="my-2"
+                direction="horizontal"
+                gap={2}
+              >
+                <Form.Group>
+                  <Form.Control type="text" placeholder="Search" ref={searchInputRef} />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                  Find
+                </Button>
+              </Stack>
+            </Col>
+          </Row>
         </Form>
       </div>
       <Table striped bordered hover>
