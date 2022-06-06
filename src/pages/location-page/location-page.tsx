@@ -2,9 +2,9 @@ import React, { FC, useEffect } from 'react';
 import { useStore } from 'effector-react';
 import { useParams } from 'react-router-dom';
 import {
-  Col,
   Container,
   Row,
+  Stack,
 } from 'react-bootstrap';
 import { $locationState } from '../../features/location';
 import getLocationFx from '../../features/location/effects/get-location-fx';
@@ -20,23 +20,23 @@ const LocationPage: FC = () => {
   if (!location) return null;
 
   return (
-    <Container fluid="true">
+    <Container>
       <Row>
-        <h1 className="p-0">
+        <h1>
           {location.name}
         </h1>
       </Row>
-      <Row sm="12">
-        <Col>
-          <Row>
-            Dimenson:&nbsp;
-            {location.dimension}
-          </Row>
-          <h2 className="p-0">Residents:</h2>
+      <Row>
+        <span>
+          Dimenson:&nbsp;
+          {location.dimension}
+        </span>
+        <h2>Residents:</h2>
+        <Stack>
           {
             location.residents.map((resident) => <Resident key={resident} residentUrl={resident} />)
           }
-        </Col>
+        </Stack>
       </Row>
     </Container>
   );

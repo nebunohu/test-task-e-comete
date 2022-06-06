@@ -27,7 +27,7 @@ const CharacterPage: FC = () => {
   const characterLocationId = character.location.url.match(/\d+/);
 
   return (
-    <Container fluid="true">
+    <Container>
       <Row>
         <h1>
           {character.name}

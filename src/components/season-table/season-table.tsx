@@ -1,6 +1,11 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Stack, Table } from 'react-bootstrap';
+import {
+  Form,
+  Stack,
+  Table,
+  Container,
+} from 'react-bootstrap';
 
 // Styles
 import styles from './season-table.module.scss';
@@ -12,6 +17,13 @@ type TSeasonTableProps = {
 };
 
 const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
+  const [sortedByFlag, setSortedByFlag] = useState({
+    id: true,
+    name: false,
+    air_date: false,
+    episode: false,
+    count: false,
+  });
   const [sortedList, setSortedList] = useState(list);
   const [formState, setFormState] = useState({
     id: true,
@@ -70,22 +82,57 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
 
   const sortById = () => {
     setSortedList(() => sortByKey(list, 'id'));
+    setSortedByFlag({
+      id: true,
+      name: false,
+      air_date: false,
+      episode: false,
+      count: false,
+    });
   };
 
   const sortByName = () => {
     setSortedList(() => sortByKey(list, 'name'));
+    setSortedByFlag({
+      id: false,
+      name: true,
+      air_date: false,
+      episode: false,
+      count: false,
+    });
   };
 
   const sortByDate = () => {
     setSortedList(() => sortByKey(list, 'air_date'));
+    setSortedByFlag({
+      id: false,
+      name: false,
+      air_date: true,
+      episode: false,
+      count: false,
+    });
   };
 
   const sortByEpisode = () => {
     setSortedList(() => sortByKey(list, 'episode'));
+    setSortedByFlag({
+      id: false,
+      name: false,
+      air_date: false,
+      episode: true,
+      count: false,
+    });
   };
 
   const sortByCharactersCount = () => {
     setSortedList(() => sortByKey(list, 'count'));
+    setSortedByFlag({
+      id: false,
+      name: false,
+      air_date: false,
+      episode: false,
+      count: true,
+    });
   };
 
   const onFormChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -94,13 +141,13 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
   };
 
   return (
-    <>
+    <Container>
       <h1>
         {`Season ${index + 1}`}
       </h1>
-      <div>
+      <div className="mb-3">
         Show columns:
-        <Form>
+        <Form className="mt-1">
           <Stack
             direction="horizontal"
             gap={5}
@@ -162,6 +209,9 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
                 onClick={sortById}
               >
                 Id
+                {sortedByFlag.id && (
+                  <i className="bi-sort-down-alt mx-2" />
+                )}
               </td>
             )}
             {formState.name && (
@@ -170,6 +220,9 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
                 onClick={sortByName}
               >
                 Name
+                {sortedByFlag.name && (
+                  <i className="bi-sort-down-alt mx-2" />
+                )}
               </td>
             )}
             {formState.air_date && (
@@ -178,6 +231,9 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
                 onClick={sortByDate}
               >
                 Air date
+                {sortedByFlag.air_date && (
+                  <i className="bi-sort-down-alt mx-2" />
+                )}
               </td>
             )}
             {formState.episode && (
@@ -186,6 +242,9 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
                 onClick={sortByEpisode}
               >
                 Episode
+                {sortedByFlag.episode && (
+                  <i className="bi-sort-down-alt mx-2" />
+                )}
               </td>
             )}
             {formState.count && (
@@ -194,6 +253,9 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
                 onClick={sortByCharactersCount}
               >
                 Characters count
+                {sortedByFlag.count && (
+                  <i className="bi-sort-down-alt mx-2" />
+                )}
               </td>
             )}
           </tr>
@@ -232,7 +294,7 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
           })}
         </tbody>
       </Table>
-    </>
+    </Container>
   );
 };
 

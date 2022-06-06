@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Container } from 'react-bootstrap';
 import { Route, Routes, Link } from 'react-router-dom';
 import CharacterPage from '../../pages/character-page/character-page';
 import LocationPage from '../../pages/location-page/location-page';
@@ -11,15 +12,13 @@ import ErrorBoundary from '../error-boundary/error-boundary';
 import styles from './app.module.scss';
 
 const App: FC = () => {
-  // useEffect(() => {
-  //   getEpisodesFx(`${API_BASE_URL}/episode?page=1`);
-  // }, []);
-
   return (
     <ErrorBoundary>
       <div className={`${styles.wrapper}`}>
         <header>
-          <Link to="/">E-comete Test Task</Link>
+          <Container>
+            <Link to="/">E-comete Test Task</Link>
+          </Container>
         </header>
         <div className={`${styles.contentWrapper}`}>
           <Routes>
