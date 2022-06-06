@@ -104,24 +104,28 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
     setFormState({ ...formState, [name]: checked });
   };
 
-  const onFormSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    // if (searchInputRef.current) {
+  const search = () => {
     let filteredList = list.filter((episode) => {
       const value = searchInputRef.current?.value as string;
       return episode.name.toLowerCase().includes(value.toLowerCase());
     });
-    // console.log(filteredList);
-    type keys = keyof typeof sortedByFlag;
-    for () {
-      if (sortedByFlag[key]) {
-        filteredList = sortByKey(filteredList, key);
+    const keys = Object.keys(sortedByFlag) as Array<keyof typeof sortedByFlag>;
+    for (let i = 0; i < keys.length; i += 1) {
+      if (sortedByFlag[keys[i]]) {
+        filteredList = sortByKey(filteredList, keys[i]);
         break;
       }
     }
-
     setSortedList(filteredList);
-    // }
+  };
+
+  const onFormSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    search();
+  };
+
+  const onSearchInputChange = () => {
+    search();
   };
 
   return (
@@ -195,7 +199,12 @@ const SeasonTable: FC<TSeasonTableProps> = ({ list, index }) => {
                 gap={2}
               >
                 <Form.Group>
-                  <Form.Control type="text" placeholder="Search" ref={searchInputRef} />
+                  <Form.Control
+                    type="text"
+                    placeholder="Search"
+                    onChange={onSearchInputChange}
+                    ref={searchInputRef}
+                  />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                   Find
