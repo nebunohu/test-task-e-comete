@@ -6,9 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const baseName = process.env.NODE_ENV !== 'development' ? '/test-task-e-comete' : '/';
+
 const renderTarget = document.getElementById('root');
 render(
-  <Router>
+  <Router basename={baseName}>
     <App />
   </Router>,
   renderTarget,
