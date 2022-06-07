@@ -8,9 +8,9 @@ import { API_BASE_URL } from '../../consts';
 import { $episodes } from '../../features/episodes';
 import addSeason from '../../features/episodes/effects/add-season';
 import getEpisodesFx from '../../features/episodes/effects/get-episodes';
-import SeasonTable from '../season-table/season-table';
+import SeasonTable from '../../components/season-table/season-table';
 
-const EpisodesList: FC = () => {
+const MainPage: FC = () => {
   const { list, seasons } = useStore($episodes);
 
   const parseSeasons = (seasonRegExp: RegExp) => {
@@ -43,4 +43,4 @@ const EpisodesList: FC = () => {
   );
 };
 
-export default EpisodesList;
+export default MainPage;

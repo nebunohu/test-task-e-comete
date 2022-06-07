@@ -5,13 +5,13 @@ import { useParams } from 'react-router-dom';
 import { API_BASE_URL } from '../../consts';
 import { $episodes } from '../../features/episodes';
 import getEpisodesFx from '../../features/episodes/effects/get-episodes';
-import BackButton from '../back-button/back-button';
-import Character from '../character/character';
+import BackButton from '../../components/back-button/back-button';
+import Character from '../../components/character/character';
 
 // Styles
-import styles from './episode-details.module.scss';
+import styles from './episode-details-page.module.scss';
 
-const EpisodeDetails: FC = () => {
+const EpisodeDetailsPage: FC = () => {
   const { episode } = useParams();
   const { list } = useStore($episodes);
 
@@ -36,4 +36,4 @@ const EpisodeDetails: FC = () => {
   );
 };
 
-export default EpisodeDetails;
+export default EpisodeDetailsPage;
