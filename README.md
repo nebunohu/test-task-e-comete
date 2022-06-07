@@ -10,8 +10,8 @@
 * TypeScript
 * React
   * React-router
+  * React-bootstrap
 * Effector
-* React-bootstrap
 
 Этот проект доступен по [ссылке](https://nebunohu.github.io/test-task-e-comete)
 
