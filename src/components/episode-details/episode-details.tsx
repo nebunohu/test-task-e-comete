@@ -11,10 +11,6 @@ import Character from '../character/character';
 // Styles
 import styles from './episode-details.module.scss';
 
-// type TEpisodeDetailsProps = {
-//   characters: Array<string>;
-// };
-
 const EpisodeDetails: FC = () => {
   const { episode } = useParams();
   const { list } = useStore($episodes);

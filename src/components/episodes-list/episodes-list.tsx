@@ -10,9 +10,6 @@ import addSeason from '../../features/episodes/effects/add-season';
 import getEpisodesFx from '../../features/episodes/effects/get-episodes';
 import SeasonTable from '../season-table/season-table';
 
-// Styles
-// import styles from './episodes-list.module.scss';
-
 const EpisodesList: FC = () => {
   const { list, seasons } = useStore($episodes);
 

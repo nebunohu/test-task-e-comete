@@ -19,8 +19,6 @@ export const initialState: TEpisodesState = {
   isGetEpisodesRequest: false,
 };
 
-// const saveEpisodes = createEvent
-
 export const $episodes = createStore(initialState)
   .on(getEpisodesFx.doneData, (episodes, newData: any) => {
     return { ...episodes, list: newData };

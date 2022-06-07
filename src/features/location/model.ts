@@ -14,8 +14,6 @@ export const initialState: TLocationState = {
   isGetLocationRequest: false,
 };
 
-// const saveEpisodes = createEvent
-
 export const $locationState = createStore(initialState)
   .on(getLocationFx.doneData, (locationState, newData: any) => {
     return { ...locationState, location: newData };

@@ -9,8 +9,4 @@ const getEpisodesFx = createEffect<any>(async (url: string) => {
   return data;
 });
 
-// getEpisodesFx.done.watch(({ result }) => {
-//   console.log(result);
-// });
-
 export default getEpisodesFx;

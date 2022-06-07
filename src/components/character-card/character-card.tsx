@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import StatusMarker from '../status-marker/status-marker';
-// import StatusMarker from '../status-marker/status-marker';
 import styles from './character-card.module.scss';
 
 type TCharacterCardProps = {
