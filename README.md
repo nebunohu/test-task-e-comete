@@ -12,8 +12,8 @@
 * TypeScript
 * React
   * React-router
+  * React-bootstrap
 * Effector
-* React-bootstrap
 
 Этот проект доступен по [ссылке](https://nebunohu.github.io/test-task-e-comete)
 
@@ -22,7 +22,7 @@
 Далее для установки зависимостей введите:<br>
 `npm install`<br>
 Для статического анализатора кода введите в терминале команду:<br>
-`npm run lint`
+`npm run lint`<br>
 Для запуска приложения на [http://localhost:3000](http://localhost:3000) введите в терминале команду:<br>
 `npm run start`<br>
 Для размещения приложения на Github Pages введите в терминале команду:<br>
